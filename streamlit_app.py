@@ -6,7 +6,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 # Autenticação com Google Sheets via st.secrets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials_dict = st.secrets["gcp_service_account"]
+import json  # já deve estar no topo
+credentials_dict = json.loads(st.secrets["gcp_service_account"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
 client = gspread.authorize(creds)
 
