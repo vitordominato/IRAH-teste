@@ -20,7 +20,7 @@ try:
     spreadsheet = client.open("IRAH-app")
     sheet = spreadsheet.worksheet("Sheet1")
     dados = pd.DataFrame(sheet.get_all_records())
-
+st.write(dados.head())
     if dados.empty or "irah" not in dados.columns:
         st.warning("⚠️ A planilha está vazia ou sem a coluna 'irah'. Faça ao menos uma avaliação.")
         st.stop()
