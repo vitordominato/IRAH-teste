@@ -1,6 +1,7 @@
 
 import streamlit as st
 import pandas as pd
+import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
@@ -11,7 +12,7 @@ st.title("📊 Dashboard de Risco Assistencial (IRAH)")
 
 # Autenticação com Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials_dict = st.secrets["gcp_service_account"]  # sem json.loads
+credentials_dict = json.loads(st.secrets["gcp_service_account"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
 client = gspread.authorize(creds)
 
